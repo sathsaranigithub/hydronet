@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "913234530681",
+    "project_id": "lettus-65e26",
+    "storage_bucket": "lettus-65e26.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913234530681:android:3a5e35b8b3036cb30e1fa8",
+        "android_client_info": {
+          "package_name": "com.example.lettus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1oDWLZaxdxil5-MBjBDubFhm3f9T0UG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913234530681:android:c7e174c82cd46b2e0e1fa8",
+        "android_client_info": {
+          "package_name": "com.lettus.lettus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1oDWLZaxdxil5-MBjBDubFhm3f9T0UG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
