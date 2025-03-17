@@ -1,0 +1,2 @@
+D:/hydronet/android/app/.cxx/Debug/3k4ib635/x86/CMakeFiles/edit_cache.dir
+D:/hydronet/android/app/.cxx/Debug/3k4ib635/x86/CMakeFiles/rebuild_cache.dir

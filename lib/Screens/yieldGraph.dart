@@ -43,54 +43,56 @@ class _YieldGraphState extends State<YieldGraph> {
       child: Stack(
         children: [
           Scaffold(
-            body: Column(
-              children: [
-                PredictTopCard(
-                  name: "Yield Table",
-                  onBtnTap: () {
-                    NavigationUtils.frontNavigation(context, YieldTable());
-                  },
-                  onTap: () {
-                    NavigationUtils.backNavigation(context, Dashboard());
-                  },
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CustomGraph(
-                          ordinalList: formProvider.ordinalList,
-                          title: 'Impact of Light Intensity on Yield',
-                          maxValue: 30,
-                          symbol: 'L',
-                          mean: 'Light Intensity',
-                        ),
-                        CustomGraph(
-                          title: 'Impact of media EC on Yield',
-                          maxValue: 6,
-                          symbol: 'M',
-                          mean: 'Media Electrical Conductivity',
-                          ordinalList: formProvider.ordinalList2,
-                        ),
-                        CustomGraph(
-                          title: 'Impact of Water PH on Yield',
-                          maxValue: 10,
-                          symbol: 'W',
-                          mean: 'Water PH',
-                          ordinalList: formProvider.ordinalList3,
-                        ),
-                        CustomGraph(
-                          title: 'Impact of Ambient temperature on Yield',
-                          maxValue: 40,
-                          symbol: 'T',
-                          mean: 'Ambient temperature',
-                          ordinalList: formProvider.ordinalList4,
-                        ),
-                      ],
+            body: SafeArea(
+              child: Column(
+                children: [
+                  PredictTopCard(
+                    name: "Yield Table",
+                    onBtnTap: () {
+                      NavigationUtils.frontNavigation(context, YieldTable());
+                    },
+                    onTap: () {
+                      NavigationUtils.backNavigation(context, Dashboard());
+                    },
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          CustomGraph(
+                            ordinalList: formProvider.ordinalList,
+                            title: 'Impact of Light Intensity on Yield',
+                            maxValue: 30,
+                            symbol: 'L',
+                            mean: 'Light Intensity',
+                          ),
+                          CustomGraph(
+                            title: 'Impact of media EC on Yield',
+                            maxValue: 6,
+                            symbol: 'M',
+                            mean: 'Media Electrical Conductivity',
+                            ordinalList: formProvider.ordinalList2,
+                          ),
+                          CustomGraph(
+                            title: 'Impact of Water PH on Yield',
+                            maxValue: 10,
+                            symbol: 'W',
+                            mean: 'Water PH',
+                            ordinalList: formProvider.ordinalList3,
+                          ),
+                          CustomGraph(
+                            title: 'Impact of Ambient temperature on Yield',
+                            maxValue: 40,
+                            symbol: 'T',
+                            mean: 'Ambient temperature',
+                            ordinalList: formProvider.ordinalList4,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           if (clicked) const Loading(),
