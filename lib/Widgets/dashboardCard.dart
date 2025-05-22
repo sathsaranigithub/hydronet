@@ -6,6 +6,9 @@ import 'package:lettus/Widgets/label.dart';
 class DashboardCard extends StatelessWidget {
   final String labelText;
   final String imagePath;
+  final String lCOlor;
+  final String lWeight;
+  final bool isShow;
   final VoidCallback onTap;
 
   const DashboardCard({
@@ -13,6 +16,9 @@ class DashboardCard extends StatelessWidget {
     required this.labelText,
     required this.imagePath,
     required this.onTap,
+    this.lCOlor = "",
+    this.lWeight = "",
+    this.isShow = false,
   }) : super(key: key);
 
   @override
@@ -36,6 +42,32 @@ class DashboardCard extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Container(
+            child: Visibility(
+              visible: isShow,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8, top: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Label(
+                        hintText: "Lettuce Colour:$lCOlor",
+                        textColor: AppColors.green1,
+                        fontSize: AppFonts.font20,
+                        fontFamily: AppFonts.lemonada,
+                        fontWeight: FontWeight.w500),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Label(
+                          hintText: "Lettuce weight:${lWeight}kg",
+                          textColor: AppColors.green1,
+                          fontSize: AppFonts.font20,
+                          fontFamily: AppFonts.lemonada,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(imagePath),
