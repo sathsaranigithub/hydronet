@@ -58,30 +58,27 @@ class _PedictionPageState extends State<PedictionPage> {
         Scaffold(
           backgroundColor: AppColors.white1,
           body: Column(
-
             children: [
               Container(
-                  color: AppColors.green1,
-                  child: Column(
-                    children: [
-                       PredictTopCard(
-                        name: "Yield Graph",
-                        onBtnTap: () {
-                          NavigationUtils.frontNavigation(
-                              context, YieldGraph());
-                        },
-                        onTap: () {
-                          NavigationUtils.backNavigation(context, Dashboard());
-                        },
-                      )
-                    ],
-                  ),
+                color: AppColors.green1,
+                child: Column(
+                  children: [
+                    PredictTopCard(
+                      name: "Yield Graph",
+                      onBtnTap: () {
+                        NavigationUtils.frontNavigation(context, YieldGraph());
+                      },
+                      onTap: () {
+                        NavigationUtils.backNavigation(context, Dashboard());
+                      },
+                    )
+                  ],
                 ),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Column(
@@ -184,6 +181,18 @@ class _PedictionPageState extends State<PedictionPage> {
                                 child: Button(
                                     rad: 5.0,
                                     onPressed: () {
+                                      autoFillLogic(context);
+                                    },
+                                    text: "Auto Fill",
+                                    buttonColor: AppColors.green1,
+                                    width: double.infinity,
+                                    fontSize: AppFonts.font20,
+                                    fontWeight: FontWeight.w500)),
+                            Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Button(
+                                    rad: 5.0,
+                                    onPressed: () {
                                       buttonLogic(context);
                                     },
                                     text: "Predict Yield",
@@ -206,7 +215,28 @@ class _PedictionPageState extends State<PedictionPage> {
     );
   }
 
-   void buttonLogic(BuildContext context) {
+  void autoFillLogic(BuildContext context) {
+    if (isLoading == false) {
+      setState(() {
+        isLoading = true;
+      });
+      final formProvider = Provider.of<MyModel>(context, listen: false);
+
+      PredictService predictService = PredictService();
+      predictService.fetchIotData(context).then((value) {
+        setState(() {
+          mediaController.text = formProvider.media.toString();
+          waterController.text = formProvider.water.toString();
+          temperatureController.text =
+              formProvider.temperature.toInt().toString();
+          lightController.text = formProvider.light.toInt().toString();
+          isLoading = false;
+        });
+      });
+    }
+  }
+
+  void buttonLogic(BuildContext context) {
     if (lightController.text.isNotEmpty &&
         temperatureController.text.isNotEmpty &&
         waterController.text.isNotEmpty &&

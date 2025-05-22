@@ -9,6 +9,8 @@ class MyModel extends ChangeNotifier {
   double media = 0.0;
   double yieldPredict = 0.0;
   String? email = "";
+  String? lWeight = "";
+  String? lColor = "";
   List<FlSpot> ordinalList = [];
   List<FlSpot> ordinalList2 = [];
   List<FlSpot> ordinalList3 = [];
@@ -19,6 +21,7 @@ class MyModel extends ChangeNotifier {
     light = newValue;
     notifyListeners();
   }
+
   void updateFetchedTableRecords(List<Map<String, dynamic>> newValue) {
     fetchedTableRecords = newValue;
     notifyListeners();
@@ -46,6 +49,16 @@ class MyModel extends ChangeNotifier {
 
   void updateEmail(String? newValue) {
     email = newValue;
+    notifyListeners();
+  }
+
+  void updateLColor(String? newValue) {
+    lColor = newValue;
+    notifyListeners();
+  }
+
+  void updateLWeight(String? newValue) {
+    lWeight = newValue;
     notifyListeners();
   }
 

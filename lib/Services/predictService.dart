@@ -14,8 +14,44 @@ import 'package:lettus/Utils/constValues.dart';
 import 'package:lettus/Utils/pageNavigations.dart';
 import 'package:lettus/Widgets/popUpMsgBox.dart';
 import 'package:lettus/Widgets/snackBar.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class PredictService {
+  final DatabaseReference _database = FirebaseDatabase.instance
+      .refFromURL('https://lettus-65e26-default-rtdb.firebaseio.com/');
+
+  Future<void> fetchIotData(BuildContext context) async {
+    final formProvider = Provider.of<MyModel>(context, listen: false);
+    try {
+      DatabaseReference reference = _database.child('');
+
+      DataSnapshot snapshot = await reference.get();
+
+      if (snapshot.exists) {
+        formProvider.updateLColor(snapshot.child('color').value.toString());
+        formProvider.updateLWeight(snapshot.child('weight').value.toString());
+        formProvider.updateTemperature(double.parse(
+            snapshot.child('ambientTemperature').value.toString()));
+        formProvider.updateWater(
+            double.parse(snapshot.child('waterPh').value.toString()));
+        formProvider.updateLight(
+            double.parse(snapshot.child('lightIntensity').value.toString()));
+        formProvider.updateMedia(
+            double.parse(snapshot.child('mediaEC').value.toString()));
+        String color = snapshot.child('color').value.toString();
+        print('Color: $color');
+      } else {
+        print('No data available.');
+        SnackbarUtils.showDefaultSnackBar(
+            context, ConstValues.wentWrongMsg, AppColors.errorcolor);
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+      SnackbarUtils.showDefaultSnackBar(
+          context, ConstValues.wentWrongMsg, AppColors.errorcolor);
+    }
+  }
+
   Future<void> getPrediction(BuildContext context) async {
     final String url = ConstValues.link;
     final formProvider = Provider.of<MyModel>(context, listen: false);
@@ -81,7 +117,7 @@ class PredictService {
     }
   }
 
- Future<void> fetchLightData(BuildContext context) async {
+  Future<void> fetchLightData(BuildContext context) async {
     final formProvider = Provider.of<MyModel>(context, listen: false);
 
     try {
@@ -255,6 +291,7 @@ class PredictService {
       },
     );
   }
+
   Future<void> fetchData(BuildContext context) async {
     final formProvider = Provider.of<MyModel>(context, listen: false);
 
