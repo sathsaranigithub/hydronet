@@ -50,7 +50,7 @@ class DashboardCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Label(
-                        hintText: "Lettuce Colour:$lCOlor",
+                        hintText: "Lettuce Colour: $lCOlor",
                         textColor: AppColors.green1,
                         fontSize: AppFonts.font20,
                         fontFamily: AppFonts.lemonada,
@@ -58,7 +58,7 @@ class DashboardCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Label(
-                          hintText: "Lettuce weight:${lWeight}kg",
+                          hintText: "Lettuce weight: ${lWeight}g",
                           textColor: AppColors.green1,
                           fontSize: AppFonts.font20,
                           fontFamily: AppFonts.lemonada,
